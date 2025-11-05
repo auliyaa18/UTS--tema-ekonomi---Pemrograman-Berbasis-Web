@@ -1,0 +1,522 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --gold-dark-shimmer: linear-gradient(145deg, #a87e2b, #8a6520, #a87e2b); /* Emas mengkilap sedikit gelap */
+    --black-nav: #1a1a1a;
+    --black-shimmer: linear-gradient(145deg, #222222, #000000, #222222); /* Hitam mengkilap */
+    --text-color-light: #f0f0f0;
+    --text-color-dark: #333;
+    --body-bg-color: #121212; /* Warna background utama tubuh */
+    --section-bg-color: #1a1a1a; /* Warna background untuk section yang tidak ada gambar */
+    --primary-font: 'Merriweather', serif;
+    --secondary-font: 'Playfair Display', serif;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Memastikan elemen HTML mengisi seluruh tinggi viewport */
+}
+
+body {
+    margin: 0;
+    padding: 0; /* Tambahan padding: 0; untuk mengatasi celah */
+    font-family: var(--primary-font);
+    line-height: 1.6;
+    color: var(--text-color-light); /* Teks default menjadi terang */
+    background-color: var(--body-bg-color); /* Background seluruh halaman menjadi hitam gelap */
+    scroll-behavior: smooth;
+    min-height: 100%; /* Memastikan body setidaknya 100% tinggi viewport */
+    display: flex; /* Untuk layout footer di bagian bawah */
+    flex-direction: column;
+}
+
+/* Header Utama (Emas Mengkilap) */
+.main-header {
+    background: var(--gold-dark-shimmer);
+    color: var(--text-color-light);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.profile-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--text-color-light);
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.site-title {
+    font-family: var(--secondary-font);
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+/* Navigasi Bar Terpisah (Hitam Mengkilap) */
+.secondary-nav {
+    background: var(--black-shimmer); /* Hitam mengkilap */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 90px; /* Sesuaikan dengan tinggi header utama Anda (sekitar 90px) */
+    z-index: 999; /* Sedikit di bawah header utama */
+}
+
+.secondary-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Pusatkan item navigasi */
+}
+
+.secondary-nav ul li {
+    margin: 0 20px;
+}
+
+.secondary-nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 5px 0; /* Memberi sedikit padding untuk area klik */
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative; /* Untuk efek underline */
+}
+
+.secondary-nav ul li a:hover {
+    color: #ffd700; /* Emas terang saat hover */
+    transform: translateY(-2px);
+}
+
+.secondary-nav ul li a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background-color: #ffd700; /* Garis bawah emas untuk yang aktif */
+    border-radius: 2px;
+}
+
+/* Navigasi Toggle (Hamburger Menu) - Tetap di header utama */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.nav-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color-light);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Untuk animasi hamburger menu saat aktif */
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Bagian Utama Konten */
+main {
+    flex-grow: 1; /* Memastikan main mengisi ruang yang tersedia */
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gaya default untuk semua section, jika tidak ada gambar latar belakang */
+section:not(.hero-section):not(.history-section) {
+    background-color: var(--section-bg-color); /* Menggunakan variabel warna hitam untuk section */
+    color: var(--text-color-light); /* Pastikan teks tetap terang */
+}
+
+/* Hero Section (Beranda) */
+.hero-section {
+    padding: 0; /* Hapus padding untuk memastikan gambar background penuh */
+    text-align: center;
+    height: 100vh; /* Atur tinggi menjadi 100% dari tinggi viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Penting agar ::before di dalamnya posisinya relatif ke section ini */
+    overflow: hidden;
+    margin-top: 0; /* Pastikan tidak ada margin atas */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute; /* Kembali ke absolute relatif terhadap .hero-section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/profil.jpeg'); /* Ganti dengan gambar beranda Anda */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6); /* Gelapkan gambar background */
+    z-index: 1;
+}
+
+/* Teks Judul di Beranda (Selamat Datang) */
+.hero-section .overlay-text h2 {
+    background-image: var(--gold-dark-shimmer); /* Gradien emas */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none; /* Hapus text-shadow bawaan dari overlay-text h2 */
+}
+
+/* History Section (Sejarah) */
+.hero-section::before {
+    background-image: url('images/profil.jpeg'); /* Ganti dengan gambar sejarah Anda */
+}
+
+/* Teks Judul di Sejarah (Sejarah Golok Barlen) */
+.hero-section .overlay-text h2 {
+    background-image: var(--gold-dark-shimmer); /* Gradien emas */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none; /* Hapus text-shadow bawaan dari overlay-text h2 */
+}
+
+
+.overlay-text {
+    position: relative;
+    z-index: 2;
+    color: var(--text-color-light);
+    background-color: rgba(0, 0, 0, 0.4); /* Background transparan untuk teks agar lebih mudah dibaca */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.overlay-text h2 {
+    font-family: var(--secondary-font);
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    /* text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); <-- Ini sudah dihapus/ditimpa untuk judul emas */
+}
+
+.overlay-text p {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+/* Product Section */
+.product-section h2 {
+    font-family: var(--secondary-font);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    background-image: var(--gold-dark-shimmer);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.product-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-thumbnail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal (Popup Gambar) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Order Section */
+.order-section h2 {
+    font-family: var(--secondary-font);
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    background-image: var(--gold-dark-shimmer);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.order-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #333;
+    color: var(--text-color-light);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
+
+.whatsapp-btn {
+    background-color: #25d366;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128c7e;
+}
+
+.tiktok-btn {
+    background-color: #000000;
+}
+
+.tiktok-btn:hover {
+    background-color: #444444;
+}
+
+.live-schedule {
+    margin-top: 40px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--text-color-light);
+}
+
+#live-time {
+    font-weight: bold;
+    background-image: var(--gold-dark-shimmer);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Footer (Emas Mengkilap) */
+footer {
+    background: var(--gold-dark-shimmer); /* Menggunakan gradien emas yang sama */
+    color: var(--text-color-light); /* Warna teks terang */
+    text-align: center;
+    padding: 1px;
+    font-size: 0.9em;
+    margin-top: auto; /* Mendorong footer ke bagian bawah halaman */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Memberikan sedikit bayangan ke atas */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+    .site-title {
+        font-size: 1.8em;
+    }
+
+    .profile-circle {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
+
+    .secondary-nav ul li {
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+        justify-content: space-between;
+    }
+
+    .header-content {
+        flex-grow: 1;
+        justify-content: flex-start;
+    }
+
+    .profile-circle {
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+
+    .site-title {
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .secondary-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+    }
+
+    .secondary-nav.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    .secondary-nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .secondary-nav ul li {
+        margin: 20px 0;
+    }
+
+    .secondary-nav ul li a {
+        font-size: 1.5em;
+    }
+
+    .nav-toggle {
+        display: flex;
+        position: relative;
+        z-index: 1002;
+    }
+
+    .overlay-text {
+        padding: 20px;
+    }
+
+    .overlay-text h2 {
+        font-size: 2em;
+    }
+
+    .overlay-text p {
+        font-size: 1em;
+    }
+
+    .product-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .site-title {
+        font-size: 1.5em;
+    }
+
+    .overlay-text h2 {
+        font-size: 1.8em;
+    }
+
+    .overlay-text p {
+        font-size: 1em;
+    }
+
+    section {
+        padding: 40px 15px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
